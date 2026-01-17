@@ -3,13 +3,16 @@ window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
-// Scroll Reveal
+// Scroll Reveal: Animation immer wieder abspielen
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
   reveals.forEach(el => {
-    const rect = el.getBoundingClientRect();
-    if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
+    const top = el.getBoundingClientRect().top;
+    const bottom = el.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 100 && bottom > 100) {
       el.classList.add("active");
     } else {
       el.classList.remove("active");
@@ -35,78 +38,59 @@ toggle.addEventListener("click", () => {
   localStorage.setItem("theme", light ? "light" : "dark");
 });
 
-// Skills Tab Switch & Animation
-const tabBtns = document.querySelectorAll(".tab-btn");
+// Tabs
+const tabButtons = document.querySelectorAll(".tab-btn");
 const tabContents = document.querySelectorAll(".tab-content");
 
-tabBtns.forEach(btn => {
+tabButtons.forEach(btn => {
   btn.addEventListener("click", () => {
-    const target = btn.dataset.tab;
+    const tab = btn.getAttribute("data-tab");
 
-    tabBtns.forEach(b => b.classList.remove("active"));
+    tabButtons.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
 
-    tabContents.forEach(tc => {
-      if (tc.id === target) {
-        tc.classList.add("active");
-        animateBars(tc);
+    tabContents.forEach(content => {
+      if (content.id === tab) {
+        content.classList.add("active");
       } else {
-        tc.classList.remove("active");
-        resetBars(tc);
+        content.classList.remove("active");
       }
     });
+
+    // Skills Animation für neuen Tab
+    resetSkills(); // Balken auf 0 zurücksetzen
+    animateSkills(); // neu animieren
   });
 });
 
-function animateBars(container) {
-  container.querySelectorAll(".bar div").forEach(bar => {
-    const percent = bar.dataset.percentValue;
-    bar.style.width = percent;
-  });
-}
+// Skills Animation
+function animateSkills() {
+  const visibleSkills = document.querySelectorAll(".tab-content.active .skill");
 
-function resetBars(container) {
-  container.querySelectorAll(".bar div").forEach(bar => {
-    bar.style.width = "0%";
-  });
-}
-
-// Animate on scroll only bars entering viewport
-function animateBarsOnScroll() {
-  document.querySelectorAll(".skills .skill").forEach(skill => {
+  visibleSkills.forEach((skill, index) => {
     const bar = skill.querySelector(".bar div");
-    const rect = skill.getBoundingClientRect();
-    if (rect.top < window.innerHeight && rect.bottom > 0) {
-      bar.style.width = bar.dataset.percentValue;
+    const top = skill.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 50) {
+      const percent = bar.getAttribute("data-percent-value");
+      setTimeout(() => {
+        bar.style.width = percent;
+      }, index * 200);
     }
   });
 }
 
-window.addEventListener("scroll", animateBarsOnScroll);
-animateBarsOnScroll();
-
-// LIGHTBOX
-const lightbox = document.getElementById("lightbox");
-const lightboxImg = document.querySelector(".lightbox-img");
-const closeBtn = document.querySelector(".lightbox .close");
-
-document.querySelectorAll(".project-img").forEach(img => {
-  img.addEventListener("click", () => {
-    lightbox.style.display = "flex";
-    lightboxImg.src = img.src;
-    lightboxImg.alt = img.alt;
-    lightboxImg.style.transform = "scale(0.8)";
-    setTimeout(() => lightboxImg.style.transform = "scale(1)", 10);
+// Skills zurücksetzen
+function resetSkills() {
+  const allBars = document.querySelectorAll(".tab-content .skill .bar div");
+  allBars.forEach(bar => {
+    bar.style.width = "0";
   });
-});
+}
 
-closeBtn.addEventListener("click", () => {
-  lightbox.style.display = "none";
-});
+// Scroll Event
+window.addEventListener("scroll", animateSkills);
 
-lightbox.addEventListener("click", e => {
-  if (e.target === lightbox) {
-    lightbox.style.display = "none";
-  }
-});
-
+// Initial Animation
+animateSkills();
