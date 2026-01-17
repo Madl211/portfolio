@@ -8,11 +8,8 @@ const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
   reveals.forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    const bottom = el.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
-
-    if (top < windowHeight - 100 && bottom > 100) {
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight - 100 && rect.bottom > 0) {
       el.classList.add("active");
     } else {
       el.classList.remove("active");
@@ -38,66 +35,78 @@ toggle.addEventListener("click", () => {
   localStorage.setItem("theme", light ? "light" : "dark");
 });
 
-// Tabs
-const tabButtons = document.querySelectorAll(".tab-btn");
+// Skills Tab Switch & Animation
+const tabBtns = document.querySelectorAll(".tab-btn");
 const tabContents = document.querySelectorAll(".tab-content");
 
-tabButtons.forEach(btn => {
+tabBtns.forEach(btn => {
   btn.addEventListener("click", () => {
-    const tab = btn.getAttribute("data-tab");
+    const target = btn.dataset.tab;
 
-    // Buttons
-    tabButtons.forEach(b => b.classList.remove("active"));
+    tabBtns.forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
 
-    // Inhalte
-    tabContents.forEach(content => {
-      if (content.id === tab) content.classList.add("active");
-      else content.classList.remove("active");
+    tabContents.forEach(tc => {
+      if (tc.id === target) {
+        tc.classList.add("active");
+        animateBars(tc);
+      } else {
+        tc.classList.remove("active");
+        resetBars(tc);
+      }
     });
-
-    // Force Animation für Tab-Wechsel
-    animateSkills(true);
   });
 });
 
-// Skills Animation
-function animateSkills(force = false) {
-  const visibleSkills = document.querySelectorAll(".tab-content.active .skill");
+function animateBars(container) {
+  container.querySelectorAll(".bar div").forEach(bar => {
+    const percent = bar.dataset.percentValue;
+    bar.style.width = percent;
+  });
+}
 
-  visibleSkills.forEach((skill, index) => {
+function resetBars(container) {
+  container.querySelectorAll(".bar div").forEach(bar => {
+    bar.style.width = "0%";
+  });
+}
+
+// Animate on scroll only bars entering viewport
+function animateBarsOnScroll() {
+  document.querySelectorAll(".skills .skill").forEach(skill => {
     const bar = skill.querySelector(".bar div");
-    const percent = bar.getAttribute("data-percent-value");
-    const top = skill.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (force) {
-      // Tab-Wechsel: immer Animation von 0 bis Prozent
-      bar.style.transition = "none";
-      bar.style.width = "0";
-      setTimeout(() => {
-        bar.style.transition = "width 1s ease-in-out";
-        setTimeout(() => {
-          bar.style.width = percent;
-        }, index * 200);
-      }, 50);
-    } else {
-      // Scroll: Balken nur animieren, wenn sichtbar
-      if (top < windowHeight - 50) {
-        bar.style.transition = "width 1s ease-in-out";
-        setTimeout(() => {
-          bar.style.width = percent;
-        }, index * 200);
-      } else {
-        // Wenn aus dem Bild gescrollt, wieder zurücksetzen
-        bar.style.width = "0";
-      }
+    const rect = skill.getBoundingClientRect();
+    if (rect.top < window.innerHeight && rect.bottom > 0) {
+      bar.style.width = bar.dataset.percentValue;
     }
   });
 }
 
-// Scroll Event
-window.addEventListener("scroll", () => animateSkills(false));
+window.addEventListener("scroll", animateBarsOnScroll);
+animateBarsOnScroll();
 
-// Initial trigger
-animateSkills(false);
+// LIGHTBOX
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = document.querySelector(".lightbox-img");
+const closeBtn = document.querySelector(".lightbox .close");
+
+document.querySelectorAll(".project-img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+    lightboxImg.alt = img.alt;
+    lightboxImg.style.transform = "scale(0.8)";
+    setTimeout(() => lightboxImg.style.transform = "scale(1)", 10);
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  lightbox.style.display = "none";
+});
+
+lightbox.addEventListener("click", e => {
+  if (e.target === lightbox) {
+    lightbox.style.display = "none";
+  }
+});
+
