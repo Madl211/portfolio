@@ -60,9 +60,7 @@ body {
   transition: width 0.3s;
 }
 
-.nav-links a:hover::after {
-  width: 100%;
-}
+.nav-links a:hover::after { width: 100%; }
 
 .nav-icons img {
   width: 20px;
@@ -72,10 +70,7 @@ body {
 }
 
 .light .nav-icons img { filter: invert(0); }
-
-.nav-icons img:hover {
-  transform: scale(1.15);
-}
+.nav-icons img:hover { transform: scale(1.15); }
 
 /* HERO */
 .hero {
@@ -96,28 +91,22 @@ body {
   display: inline-block;
   opacity: 0;
   transform: translateY(30px);
-  animation: wordIn 0.8s forwards;
 }
 
-.word:nth-child(1) { animation-delay: 0.2s; }
-.word:nth-child(2) { animation-delay: 0.5s; }
-
-.hero-sub {
+.word-sub {
+  display: inline-block;
   font-size: 1.4rem;
   margin-bottom: 2rem;
+  opacity: 0;
+  transform: translateY(20px);
 }
 
-.hero-buttons {
-  position: relative;
-  z-index: 2;
-}
-
-.hero .btn {
+/* BUTTONS */
+.hero-buttons { position: relative; z-index: 2; }
+.hero-buttons .btn {
   pointer-events: auto;
 }
 
-
-/* BUTTONS */
 .btn {
   background: var(--accent);
   color: white;
@@ -125,7 +114,7 @@ body {
   border-radius: 10px;
   text-decoration: none;
   margin: 0.5rem;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
 }
 
 .btn:hover {
@@ -166,9 +155,7 @@ h2 {
   transition: transform 0.3s;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-}
+.card:hover { transform: translateY(-8px); }
 
 /* SKILLS */
 .skills {
@@ -211,9 +198,7 @@ h2 {
   transition: opacity 0.3s;
 }
 
-.skill:hover::after {
-  opacity: 1;
-}
+.skill:hover::after { opacity: 1; }
 
 /* REVEAL */
 .reveal {
@@ -222,14 +207,9 @@ h2 {
   transition: 0.8s;
 }
 
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
+.reveal.active { opacity: 1; transform: translateY(0); }
 
+/* WORD ANIMATION */
 @keyframes wordIn {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }

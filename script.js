@@ -4,6 +4,17 @@ toggle.addEventListener("click", () => {
   document.body.classList.toggle("light");
 });
 
+// Word Animation Hero
+window.addEventListener("load", () => {
+  const words = document.querySelectorAll(".word");
+  words.forEach((w, i) => {
+    w.style.animation = `wordIn 0.8s forwards ${i*0.3}s`;
+  });
+
+  const sub = document.querySelector(".word-sub");
+  sub.style.animation = `wordIn 0.8s forwards ${words.length*0.3 + 0.2}s`;
+});
+
 // Reveal Sections (immer wieder)
 const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -15,9 +26,7 @@ const revealObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.2 });
 
-document.querySelectorAll(".reveal").forEach(el => {
-  revealObserver.observe(el);
-});
+document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
 
 // Skills Observer (immer wieder)
 const skillObserver = new IntersectionObserver(entries => {
@@ -33,6 +42,4 @@ const skillObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.4 });
 
-document.querySelectorAll(".skill").forEach(skill => {
-  skillObserver.observe(skill);
-});
+document.querySelectorAll(".skill").forEach(skill => skillObserver.observe(skill));
