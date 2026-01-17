@@ -1,9 +1,7 @@
-// Fix: immer oben starten
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
-// Scroll Reveal
 const reveals = document.querySelectorAll(".reveal");
 
 function reveal() {
@@ -17,7 +15,6 @@ function reveal() {
 window.addEventListener("scroll", reveal);
 reveal();
 
-// Dark Mode
 const toggle = document.getElementById("theme-toggle");
 const body = document.body;
 
