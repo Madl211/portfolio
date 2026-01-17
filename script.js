@@ -1,9 +1,7 @@
-// Start immer oben
-window.addEventListener("load", () => {
-  window.scrollTo(0, 0);
-});
+// Immer oben starten
+window.scrollTo(0, 0);
 
-// Scroll Reveal
+// Scroll Reveal allgemein
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -17,17 +15,26 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-// Dark Mode Toggle
-const toggle = document.getElementById("theme-toggle");
+// Skills Animation
+const skills = document.querySelectorAll(".skill");
 
-if (localStorage.getItem("theme") === "light") {
-  document.body.classList.add("light");
-  toggle.textContent = "☀️";
-}
+const skillObserver = new IntersectionObserver(entries => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add("active");
+        const bar = entry.target.querySelector(".bar div");
+        bar.style.width = entry.target.dataset.level + "%";
+      }, index * 200);
+    }
+  });
+}, { threshold: 0.4 });
+
+skills.forEach(skill => skillObserver.observe(skill));
+
+// Dark Mode
+const toggle = document.getElementById("theme-toggle");
 
 toggle.addEventListener("click", () => {
   document.body.classList.toggle("light");
-  const light = document.body.classList.contains("light");
-  toggle.textContent = light ? "☀️" : "🌙";
-  localStorage.setItem("theme", light ? "light" : "dark");
 });
