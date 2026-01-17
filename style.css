@@ -219,6 +219,18 @@ h2 {
   transform: scale(1.04);
 }
 
+.card.project p em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.project-buttons {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
+}
+
 /* SKILLS */
 .skills-switch {
   display: flex;
