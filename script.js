@@ -3,7 +3,7 @@ window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
-// Scroll Reveal: Animation immer wieder abspielen
+// Scroll Reveal
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -56,8 +56,8 @@ tabButtons.forEach(btn => {
       else content.classList.remove("active");
     });
 
-    // Trigger Skills Animation erneut bei Tab-Wechsel
-    animateSkills(true); // true = erzwungene Animation
+    // Force Animation für Tab-Wechsel
+    animateSkills(true);
   });
 });
 
@@ -68,12 +68,13 @@ function animateSkills(force = false) {
   visibleSkills.forEach((skill, index) => {
     const bar = skill.querySelector(".bar div");
     const percent = bar.getAttribute("data-percent-value");
+    const top = skill.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
 
-    // Wenn force = true, setze erst width=0
     if (force) {
-      bar.style.transition = "none"; // ohne Transition direkt zurücksetzen
+      // Tab-Wechsel: immer Animation von 0 bis Prozent
+      bar.style.transition = "none";
       bar.style.width = "0";
-      // kleine Timeout, damit Transition wieder greift
       setTimeout(() => {
         bar.style.transition = "width 1s ease-in-out";
         setTimeout(() => {
@@ -81,23 +82,23 @@ function animateSkills(force = false) {
         }, index * 200);
       }, 50);
     } else {
-      // normale Scroll-Animation
-      const top = skill.getBoundingClientRect().top;
-      const windowHeight = window.innerHeight;
-
+      // Scroll: Balken nur animieren, wenn sichtbar
       if (top < windowHeight - 50) {
+        bar.style.transition = "width 1s ease-in-out";
         setTimeout(() => {
           bar.style.width = percent;
         }, index * 200);
       } else {
+        // Wenn aus dem Bild gescrollt, wieder zurücksetzen
         bar.style.width = "0";
       }
     }
   });
 }
 
-// Animation beim Scrollen zusätzlich prüfen
-window.addEventListener("scroll", animateSkills);
+// Scroll Event
+window.addEventListener("scroll", () => animateSkills(false));
 
 // Initial trigger
-animateSkills();
+animateSkills(false);
+
