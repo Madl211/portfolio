@@ -47,20 +47,10 @@ body {
   margin: 0 0.8rem;
   text-decoration: none;
   position: relative;
+  transition: color 0.3s;
 }
 
-.nav-links a::after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 2px;
-  background: var(--accent);
-  left: 0;
-  bottom: -4px;
-  transition: width 0.3s;
-}
-
-.nav-links a:hover::after { width: 100%; }
+.nav-links a:hover { color: var(--accent); }
 
 .nav-icons img {
   width: 20px;
@@ -80,31 +70,20 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
-.hero-title {
-  font-size: clamp(4rem, 7vw, 6rem);
-  margin-bottom: 1rem;
-}
+.hero-title { font-size: clamp(4rem, 7vw, 6rem); margin-bottom: 1rem; }
+.word, .word-sub { display: inline-block; opacity: 0; transform: translateY(30px); }
+.hero-sub { font-size: 1.4rem; margin-bottom: 2rem; }
 
-.word {
-  display: inline-block;
+/* Hero Buttons */
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
   opacity: 0;
   transform: translateY(30px);
-}
-
-.word-sub {
-  display: inline-block;
-  font-size: 1.4rem;
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-/* BUTTONS */
-.hero-buttons { position: relative; z-index: 2; }
-.hero-buttons .btn {
-  pointer-events: auto;
+  position: relative;
 }
 
 .btn {
@@ -114,102 +93,42 @@ body {
   border-radius: 10px;
   text-decoration: none;
   margin: 0.5rem;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
 .btn:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
 }
 
 .btn.secondary {
   background: transparent;
-  border: 1px solid var(--accent);
+  border: 2px solid var(--accent);
+  color: var(--accent);
 }
 
-/* SECTIONS */
-.section {
-  max-width: 1000px;
-  margin: auto;
-  padding: 7rem 2rem;
-}
-
-h2 {
-  font-size: 2.4rem;
-  margin-bottom: 3rem;
-  border-bottom: 2px solid var(--accent);
-  display: inline-block;
-}
-
-/* CARDS */
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
-  gap: 2rem;
-}
-
-.card {
-  background: var(--card);
-  padding: 2rem;
-  border-radius: 16px;
-  transition: transform 0.3s;
-}
-
-.card:hover { transform: translateY(-8px); }
-
-/* SKILLS */
-.skills {
-  max-width: 700px;
-  margin: auto;
-}
-
-.skill {
-  margin-bottom: 2rem;
-  opacity: 0;
-  transform: translateY(30px);
-  transition: 0.6s;
-  position: relative;
-}
-
-.skill.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.bar {
-  background: #222;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.bar div {
-  height: 14px;
-  width: 0;
+.btn.secondary:hover {
+  transform: scale(1.1) translateY(-2px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
   background: var(--accent);
-  transition: width 1.2s ease;
+  color: white;
 }
 
-.skill::after {
-  content: attr(data-level) "%";
-  position: absolute;
-  right: 0;
-  top: -6px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
+/* SECTIONS, CARDS, SKILLS */
+.section { max-width: 1000px; margin:auto; padding:7rem 2rem; }
+h2 { font-size:2.4rem; margin-bottom:3rem; border-bottom:2px solid var(--accent); display:inline-block; }
+.card-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; }
+.card { background: var(--card); padding:2rem; border-radius:16px; transition: transform 0.3s; }
+.card:hover { transform: translateY(-8px); }
+.skills { max-width:700px; margin:auto; }
+.skill { margin-bottom:2rem; opacity:0; transform:translateY(30px); transition:0.6s; position:relative; }
+.skill.active { opacity:1; transform:translateY(0); }
+.bar { background:#222; border-radius:10px; overflow:hidden; }
+.bar div { height:14px; width:0; background: var(--accent); transition: width 1.2s ease; }
+.skill::after { content: attr(data-level) "%"; position:absolute; right:0; top:-6px; opacity:0; transition: opacity 0.3s; }
+.skill:hover::after { opacity:1; }
+.reveal { opacity:0; transform:translateY(40px); transition:0.8s; }
+.reveal.active { opacity:1; transform:translateY(0); }
 
-.skill:hover::after { opacity: 1; }
-
-/* REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: 0.8s;
-}
-
-.reveal.active { opacity: 1; transform: translateY(0); }
-
-/* WORD ANIMATION */
-@keyframes wordIn {
-  to { opacity: 1; transform: translateY(0); }
-}
+/* Word animation */
+@keyframes wordIn { to { opacity:1; transform: translateY(0); } }
