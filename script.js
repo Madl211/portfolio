@@ -1,40 +1,38 @@
-// Immer oben starten
-window.scrollTo(0, 0);
+// Dark Mode
+const toggle = document.getElementById("theme-toggle");
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+});
 
-// Scroll Reveal allgemein
-const reveals = document.querySelectorAll(".reveal");
-
-function revealOnScroll() {
-  reveals.forEach(el => {
-    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
-      el.classList.add("active");
+// Reveal Sections (immer wieder)
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("active");
+    } else {
+      entry.target.classList.remove("active");
     }
   });
-}
+}, { threshold: 0.2 });
 
-window.addEventListener("scroll", revealOnScroll);
-revealOnScroll();
+document.querySelectorAll(".reveal").forEach(el => {
+  revealObserver.observe(el);
+});
 
-// Skills Animation
-const skills = document.querySelectorAll(".skill");
-
+// Skills Observer (immer wieder)
 const skillObserver = new IntersectionObserver(entries => {
-  entries.forEach((entry, index) => {
+  entries.forEach(entry => {
+    const bar = entry.target.querySelector(".bar div");
     if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.classList.add("active");
-        const bar = entry.target.querySelector(".bar div");
-        bar.style.width = entry.target.dataset.level + "%";
-      }, index * 200);
+      entry.target.classList.add("active");
+      bar.style.width = entry.target.dataset.level + "%";
+    } else {
+      entry.target.classList.remove("active");
+      bar.style.width = "0";
     }
   });
 }, { threshold: 0.4 });
 
-skills.forEach(skill => skillObserver.observe(skill));
-
-// Dark Mode
-const toggle = document.getElementById("theme-toggle");
-
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("light");
+document.querySelectorAll(".skill").forEach(skill => {
+  skillObserver.observe(skill);
 });
