@@ -55,6 +55,27 @@ body {
   margin-right: 1.2rem;
   text-decoration: none;
   color: var(--text);
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: var(--accent);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
 }
 
 .nav-icons {
@@ -66,10 +87,16 @@ body {
 .nav-icons img {
   width: 20px;
   filter: invert(1);
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
 .light .nav-icons img {
   filter: invert(0);
+}
+
+.nav-icons a:hover img {
+  transform: translateY(-2px);
+  opacity: 0.8;
 }
 
 #theme-toggle {
@@ -137,12 +164,23 @@ h2 {
   color: var(--btn-text);
   text-decoration: none;
   border-radius: 8px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
 }
 
 .btn.secondary {
   background: transparent;
   border: 1px solid var(--accent);
   color: var(--text);
+}
+
+.btn.secondary:hover {
+  background: var(--accent);
+  color: var(--btn-text);
 }
 
 .btn.small {
@@ -161,6 +199,24 @@ h2 {
   background: var(--card);
   padding: 1.5rem;
   border-radius: 12px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+}
+
+/* PROJECTS */
+.card.project img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  transition: transform 0.4s ease;
+}
+
+.card.project:hover img {
+  transform: scale(1.04);
 }
 
 /* SKILLS */
