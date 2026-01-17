@@ -82,30 +82,64 @@
 <section id="skills" class="section reveal">
   <h2>Fähigkeiten</h2>
 
-  <div class="skills">
-    <div class="skill">
-      <span>Java</span>
-      <div class="bar"><div data-percent="80%" data-percent-value="80%"></div></div>
+  <!-- Tab Switch -->
+  <div class="skills-switch">
+    <button class="tab-btn active" data-tab="personal">Eigene Fähigkeiten</button>
+    <button class="tab-btn" data-tab="study">Studiums-Fähigkeiten</button>
+  </div>
+
+  <!-- Tab Contents -->
+  <div class="tab-content active" id="personal">
+    <div class="skills">
+      <div class="skill">
+        <span>Java</span>
+        <div class="bar"><div data-percent="80%" data-percent-value="80%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Python</span>
+        <div class="bar"><div data-percent="75%" data-percent-value="75%"></div></div>
+      </div>
+      <div class="skill">
+        <span>C / C++</span>
+        <div class="bar"><div data-percent="85%" data-percent-value="85%"></div></div>
+      </div>
+      <div class="skill">
+        <span>HTML / CSS</span>
+        <div class="bar"><div data-percent="70%" data-percent-value="70%"></div></div>
+      </div>
+      <div class="skill">
+        <span>JavaScript</span>
+        <div class="bar"><div data-percent="70%" data-percent-value="70%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Git & Linux</span>
+        <div class="bar"><div data-percent="70%" data-percent-value="70%"></div></div>
+      </div>
     </div>
-    <div class="skill">
-      <span>Python</span>
-      <div class="bar"><div data-percent="75%" data-percent-value="75%"></div></div>
-    </div>
-    <div class="skill">
-      <span>C / C++</span>
-      <div class="bar"><div data-percent="85%" data-percent-value="85%"></div></div>
-    </div>
-    <div class="skill">
-      <span>HTML / CSS</span>
-      <div class="bar"><div data-percent="70%" data-percent-value="70%"></div></div>
-    </div>
-    <div class="skill">
-      <span>JavaScript</span>
-      <div class="bar"><div data-percent="70%" data-percent-value="70%"></div></div>
-    </div>
-    <div class="skill">
-      <span>Git & Linux</span>
-      <div class="bar"><div data-percent="70%" data-percent-value="70%"></div></div>
+  </div>
+
+  <div class="tab-content" id="study">
+    <div class="skills">
+      <div class="skill">
+        <span>Algorithmen & Datenstrukturen</span>
+        <div class="bar"><div data-percent="90%" data-percent-value="90%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Imperative Programmierung</span>
+        <div class="bar"><div data-percent="85%" data-percent-value="85%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Datenbanken</span>
+        <div class="bar"><div data-percent="75%" data-percent-value="75%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Betriebssysteme</span>
+        <div class="bar"><div data-percent="70%" data-percent-value="70%"></div></div>
+      </div>
+      <div class="skill">
+        <span>Softwareentwicklung / Projekt</span>
+        <div class="bar"><div data-percent="80%" data-percent-value="80%"></div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -115,21 +149,21 @@
 
   <div class="card-grid">
     <div class="card project">
-      <img src="placeholder.png" alt="Projekt 1">
+      <img src="project1.jpg" alt="Projekt 1">
       <h3>Projekt 1</h3>
       <p>Java · Algorithmen</p>
       <a href="https://github.com/" class="btn small">GitHub</a>
     </div>
 
     <div class="card project">
-      <img src="placeholder.png" alt="Projekt 2">
+      <img src="project2.jpg" alt="Projekt 2">
       <h3>Projekt 2</h3>
       <p>Python · Datenverarbeitung</p>
       <a href="https://github.com/" class="btn small">GitHub</a>
     </div>
 
     <div class="card project">
-      <img src="placeholder.png" alt="Projekt 3">
+      <img src="project3.jpg" alt="Projekt 3">
       <h3>Projekt 3</h3>
       <p>C++ · Systeme</p>
       <a href="https://github.com/" class="btn small">GitHub</a>

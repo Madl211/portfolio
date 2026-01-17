@@ -220,6 +220,37 @@ h2 {
 }
 
 /* SKILLS */
+.skills-switch {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+  gap: 1rem;
+}
+
+.tab-btn {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--text);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-btn.active,
+.tab-btn:hover {
+  background: var(--accent);
+  color: var(--btn-text);
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
 .skills {
   max-width: 500px;
   margin: auto;

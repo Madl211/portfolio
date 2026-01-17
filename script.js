@@ -15,7 +15,7 @@ function revealOnScroll() {
     if (top < windowHeight - 100 && bottom > 100) {
       el.classList.add("active");
     } else {
-      el.classList.remove("active"); // entfernt die Klasse, wenn Element außerhalb
+      el.classList.remove("active");
     }
   });
 }
@@ -38,25 +38,66 @@ toggle.addEventListener("click", () => {
   localStorage.setItem("theme", light ? "light" : "dark");
 });
 
-// Skills Scroll Animation
-const skillElements = document.querySelectorAll(".skill");
+// Tabs
+const tabButtons = document.querySelectorAll(".tab-btn");
+const tabContents = document.querySelectorAll(".tab-content");
 
-function animateSkills() {
-  skillElements.forEach((skill, index) => {
+tabButtons.forEach(btn => {
+  btn.addEventListener("click", () => {
+    const tab = btn.getAttribute("data-tab");
+
+    // Buttons
+    tabButtons.forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+
+    // Inhalte
+    tabContents.forEach(content => {
+      if (content.id === tab) content.classList.add("active");
+      else content.classList.remove("active");
+    });
+
+    // Trigger Skills Animation erneut bei Tab-Wechsel
+    animateSkills(true); // true = erzwungene Animation
+  });
+});
+
+// Skills Animation
+function animateSkills(force = false) {
+  const visibleSkills = document.querySelectorAll(".tab-content.active .skill");
+
+  visibleSkills.forEach((skill, index) => {
     const bar = skill.querySelector(".bar div");
-    const top = skill.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
+    const percent = bar.getAttribute("data-percent-value");
 
-    if (top < windowHeight - 50) {
-      const percent = bar.getAttribute("data-percent-value");
+    // Wenn force = true, setze erst width=0
+    if (force) {
+      bar.style.transition = "none"; // ohne Transition direkt zurücksetzen
+      bar.style.width = "0";
+      // kleine Timeout, damit Transition wieder greift
       setTimeout(() => {
-        bar.style.width = percent;
-      }, index * 200); // 200ms Verzögerung zwischen Balken
+        bar.style.transition = "width 1s ease-in-out";
+        setTimeout(() => {
+          bar.style.width = percent;
+        }, index * 200);
+      }, 50);
     } else {
-      bar.style.width = "0"; // zurücksetzen, wenn Element raus
+      // normale Scroll-Animation
+      const top = skill.getBoundingClientRect().top;
+      const windowHeight = window.innerHeight;
+
+      if (top < windowHeight - 50) {
+        setTimeout(() => {
+          bar.style.width = percent;
+        }, index * 200);
+      } else {
+        bar.style.width = "0";
+      }
     }
   });
 }
 
+// Animation beim Scrollen zusätzlich prüfen
 window.addEventListener("scroll", animateSkills);
+
+// Initial trigger
 animateSkills();
