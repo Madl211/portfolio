@@ -57,9 +57,8 @@ tabButtons.forEach(btn => {
       }
     });
 
-    // Skills Animation für neuen Tab
-    resetSkills(); // Balken auf 0 zurücksetzen
-    animateSkills(); // neu animieren
+    resetSkills();
+    animateSkills();
   });
 });
 
@@ -91,6 +90,31 @@ function resetSkills() {
 
 // Scroll Event
 window.addEventListener("scroll", animateSkills);
-
-// Initial Animation
 animateSkills();
+
+// =====================
+// Lightbox für Projektbilder
+// =====================
+const lightbox = document.getElementById("lightbox");
+const lightboxImg = lightbox.querySelector(".lightbox-img");
+const closeBtn = lightbox.querySelector(".close");
+
+document.querySelectorAll(".project-img").forEach(img => {
+  img.addEventListener("click", () => {
+    lightbox.style.display = "flex";
+    lightboxImg.src = img.src;
+  });
+});
+
+closeBtn.addEventListener("click", () => {
+  lightbox.style.display = "none";
+  lightboxImg.src = "";
+});
+
+// Klick außerhalb des Bildes schließt die Lightbox
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.display = "none";
+    lightboxImg.src = "";
+  }
+});
