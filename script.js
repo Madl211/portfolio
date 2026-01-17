@@ -1,42 +1,62 @@
-// Dark Mode Toggle
-const toggle = document.getElementById("theme-toggle");
-toggle.addEventListener("click", () => document.body.classList.toggle("light"));
-
-// Hero Word Animation + Subtitle + Buttons
+// Start immer oben
 window.addEventListener("load", () => {
-  const words = document.querySelectorAll(".word");
-  words.forEach((w,i) => w.style.animation = `wordIn 0.8s forwards ${i*0.3}s`);
-  
-  const sub = document.querySelector(".word-sub");
-  sub.style.animation = `wordIn 0.8s forwards ${words.length*0.3 + 0.2}s`;
-
-  const buttons = document.querySelector(".hero-buttons");
-  setTimeout(() => {
-    buttons.style.opacity = 1;
-    buttons.style.transform = "translateY(0)";
-  }, (words.length*0.3 + 0.5)*1000);
+  window.scrollTo(0, 0);
 });
 
-// Reveal sections immer wieder
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting) entry.target.classList.add("active");
-    else entry.target.classList.remove("active");
-  });
-}, { threshold:0.2 });
-document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+// Scroll Reveal: Animation immer wieder abspielen
+const reveals = document.querySelectorAll(".reveal");
 
-// Skills
-const skillObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    const bar = entry.target.querySelector(".bar div");
-    if(entry.isIntersecting) {
-      entry.target.classList.add("active");
-      bar.style.width = entry.target.dataset.level + "%";
+function revealOnScroll() {
+  reveals.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    const bottom = el.getBoundingClientRect().bottom;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 100 && bottom > 100) {
+      el.classList.add("active");
     } else {
-      entry.target.classList.remove("active");
-      bar.style.width = "0";
+      el.classList.remove("active"); // entfernt die Klasse, wenn Element außerhalb
     }
   });
-}, { threshold:0.4 });
-document.querySelectorAll(".skill").forEach(skill => skillObserver.observe(skill));
+}
+
+window.addEventListener("scroll", revealOnScroll);
+revealOnScroll();
+
+// Dark Mode Toggle
+const toggle = document.getElementById("theme-toggle");
+
+if (localStorage.getItem("theme") === "light") {
+  document.body.classList.add("light");
+  toggle.textContent = "☀️";
+}
+
+toggle.addEventListener("click", () => {
+  document.body.classList.toggle("light");
+  const light = document.body.classList.contains("light");
+  toggle.textContent = light ? "☀️" : "🌙";
+  localStorage.setItem("theme", light ? "light" : "dark");
+});
+
+// Skills Scroll Animation
+const skillElements = document.querySelectorAll(".skill");
+
+function animateSkills() {
+  skillElements.forEach((skill, index) => {
+    const bar = skill.querySelector(".bar div");
+    const top = skill.getBoundingClientRect().top;
+    const windowHeight = window.innerHeight;
+
+    if (top < windowHeight - 50) {
+      const percent = bar.getAttribute("data-percent-value");
+      setTimeout(() => {
+        bar.style.width = percent;
+      }, index * 200); // 200ms Verzögerung zwischen Balken
+    } else {
+      bar.style.width = "0"; // zurücksetzen, wenn Element raus
+    }
+  });
+}
+
+window.addEventListener("scroll", animateSkills);
+animateSkills();
