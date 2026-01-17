@@ -296,6 +296,15 @@ h2 {
   color: var(--btn-text);
 }
 
+/* Tab content hidden */
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
 /* Reveal */
 .reveal {
   opacity: 0;
