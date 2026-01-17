@@ -101,4 +101,3 @@ window.addEventListener("scroll", () => animateSkills(false));
 
 // Initial trigger
 animateSkills(false);
-
