@@ -1,21 +1,34 @@
-const toggleBtn = document.getElementById("theme-toggle");
-const body = document.body;
+// Fix: immer oben starten
+window.addEventListener("load", () => {
+  window.scrollTo(0, 0);
+});
 
-// gespeichertes Theme laden
-const savedTheme = localStorage.getItem("theme");
-if (savedTheme === "light") {
-  body.classList.add("light");
-  toggleBtn.textContent = "☀️";
+// Scroll Reveal
+const reveals = document.querySelectorAll(".reveal");
+
+function reveal() {
+  reveals.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
 }
 
-toggleBtn.addEventListener("click", () => {
-  body.classList.toggle("light");
+window.addEventListener("scroll", reveal);
+reveal();
 
-  if (body.classList.contains("light")) {
-    toggleBtn.textContent = "☀️";
-    localStorage.setItem("theme", "light");
-  } else {
-    toggleBtn.textContent = "🌙";
-    localStorage.setItem("theme", "dark");
-  }
-});
+// Dark Mode
+const toggle = document.getElementById("theme-toggle");
+const body = document.body;
+
+if (localStorage.getItem("theme") === "light") {
+  body.classList.add("light");
+  toggle.textContent = "☀️";
+}
+
+toggle.onclick = () => {
+  body.classList.toggle("light");
+  const light = body.classList.contains("light");
+  toggle.textContent = light ? "☀️" : "🌙";
+  localStorage.setItem("theme", light ? "light" : "dark");
+};
