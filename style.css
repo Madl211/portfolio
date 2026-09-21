@@ -245,6 +245,29 @@ h2 {
   text-align: left;
 }
 
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.45rem;
+  font-size: 0.95rem;
+}
+
+.grade-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3rem;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(79, 70, 229, 0.12);
+  border: 1px solid var(--accent);
+  color: var(--text);
+  font-weight: 600;
+  font-size: 0.8rem;
+}
+
 .bar {
   background: var(--bg-soft);
   border-radius: 8px;
