@@ -1,9 +1,9 @@
-// Start immer oben
+// Start at the top
 window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
-// Scroll Reveal: Animation immer wieder abspielen
+// Scroll reveal: replay animation on every scroll
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
@@ -23,7 +23,7 @@ function revealOnScroll() {
 window.addEventListener("scroll", revealOnScroll);
 revealOnScroll();
 
-// Dark Mode Toggle
+// Dark mode toggle
 const toggle = document.getElementById("theme-toggle");
 
 if (localStorage.getItem("theme") === "light") {
@@ -62,7 +62,7 @@ tabButtons.forEach(btn => {
   });
 });
 
-// Skills Animation
+// Skills animation
 function animateSkills() {
   const visibleSkills = document.querySelectorAll(".tab-content.active .skill");
 
@@ -80,7 +80,7 @@ function animateSkills() {
   });
 }
 
-// Skills zurücksetzen
+// Reset skills
 function resetSkills() {
   const allBars = document.querySelectorAll(".tab-content .skill .bar div");
   allBars.forEach(bar => {
@@ -88,13 +88,12 @@ function resetSkills() {
   });
 }
 
-// Scroll Event
+// Scroll event
 window.addEventListener("scroll", animateSkills);
 animateSkills();
 
-// =====================
-// Lightbox für Projektbilder
-// =====================
+
+// Lightbox for project images
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = lightbox.querySelector(".lightbox-img");
 const closeBtn = lightbox.querySelector(".close");
@@ -111,7 +110,7 @@ closeBtn.addEventListener("click", () => {
   lightboxImg.src = "";
 });
 
-// Klick außerhalb des Bildes schließt die Lightbox
+// Click outside the image closes the lightbox
 lightbox.addEventListener("click", (e) => {
   if (e.target === lightbox) {
     lightbox.style.display = "none";
