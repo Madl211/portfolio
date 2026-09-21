@@ -124,6 +124,14 @@ body {
   cursor: pointer;
 }
 
+#contact {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 /* SECTIONS */
 .section {
   max-width: 900px;
@@ -185,20 +193,24 @@ h2 {
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.contact-grid {
+#contact .contact-grid {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
+  align-items: center;
+  gap: 0.9rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 1.5rem auto 0;
+  text-align: center;
 }
 
-.contact-item {
+#contact .contact-item {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.5rem;
-  padding: 0.45rem 0.75rem;
+  width: 42px;
+  height: 42px;
+  padding: 0;
   border: 1px solid var(--accent);
   border-radius: 12px;
   color: var(--text);
@@ -208,7 +220,7 @@ h2 {
 }
 
 .contact-item:hover {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
   box-shadow: 0 10px 25px rgba(0,0,0,0.18);
 }
 
@@ -216,33 +228,42 @@ h2 {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 12px !important;
-  height: 12px !important;
-  min-width: 12px !important;
-  min-height: 12px !important;
-  font-size: 0.75rem;
-  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  min-width: 18px;
+  min-height: 18px;
   line-height: 1;
+  flex-shrink: 0;
 }
 
-.contact-icon img,
-.contact-item img,
-.contact-grid img {
-  display: block !important;
-  width: 12px !important;
-  height: 12px !important;
-  min-width: 12px !important;
-  min-height: 12px !important;
-  max-width: 12px !important;
-  max-height: 12px !important;
-  object-fit: contain !important;
-  filter: invert(1);
+#contact .contact-icon img,
+#contact .contact-item img,
+#contact .contact-grid img {
+  display: block;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+  min-height: 18px !important;
+  max-width: 18px !important;
+  max-height: 18px !important;
+  object-fit: contain;
+  filter: brightness(0) invert(1) !important;
 }
 
-.light .contact-icon img,
-.light .contact-item img,
-.light .contact-grid img {
-  filter: invert(0);
+body.light #contact .contact-icon img,
+body.light #contact .contact-item img,
+body.light #contact .contact-grid img {
+  filter: brightness(0) !important;
+}
+
+.email-link {
+  width: 42px;
+  height: 42px;
+}
+
+.icon-only {
+  width: 42px;
+  height: 42px;
 }
 
 .btn:hover {
