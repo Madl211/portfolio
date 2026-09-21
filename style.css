@@ -84,8 +84,26 @@ body {
   gap: 0.8rem;
 }
 
+.nav-icons a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px !important;
+  min-height: 14px !important;
+  flex-shrink: 0;
+}
+
 .nav-icons img {
-  width: 20px;
+  display: block;
+  width: 14px !important;
+  height: 14px !important;
+  min-width: 14px !important;
+  min-height: 14px !important;
+  max-width: 14px !important;
+  max-height: 14px !important;
+  object-fit: contain;
   filter: invert(1);
   transition: transform 0.2s ease, opacity 0.2s ease;
 }
@@ -165,6 +183,66 @@ h2 {
   text-decoration: none;
   border-radius: 8px;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.contact-item {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.75rem;
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  background: rgba(79, 70, 229, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
+
+.contact-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px !important;
+  min-height: 12px !important;
+  font-size: 0.75rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.contact-icon img,
+.contact-item img,
+.contact-grid img {
+  display: block !important;
+  width: 12px !important;
+  height: 12px !important;
+  min-width: 12px !important;
+  min-height: 12px !important;
+  max-width: 12px !important;
+  max-height: 12px !important;
+  object-fit: contain !important;
+  filter: invert(1);
+}
+
+.light .contact-icon img,
+.light .contact-item img,
+.light .contact-grid img {
+  filter: invert(0);
 }
 
 .btn:hover {
