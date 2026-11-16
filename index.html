@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Mathis Behrendt – computer science student at the University of Rostock, looking for a 20-week internship from April 2027."/>
   <title>Mathis Behrendt | Portfolio</title>
   <link rel="stylesheet" href="style.css"/>
 </head>
@@ -19,13 +20,13 @@
     </nav>
 
     <div class="nav-icons">
-      <a href="https://github.com/madl211" target="_blank" aria-label="GitHub">
+      <a href="https://github.com/madl211" target="_blank" rel="noopener" aria-label="GitHub">
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub">
       </a>
-      <a href="https://www.linkedin.com/in/mathis-behrendt-5ab5ba37a/" target="_blank" aria-label="LinkedIn">
+      <a href="https://www.linkedin.com/in/mathis-behrendt-5ab5ba37a/" target="_blank" rel="noopener" aria-label="LinkedIn">
         <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn">
       </a>
-      <button id="theme-toggle">🌙</button>
+      <button id="theme-toggle" aria-label="Toggle light/dark mode">🌙</button>
     </div>
   </div>
 </header>
@@ -37,13 +38,15 @@
   </h1>
 
   <p class="hero-sub">
-    Computer Science Student (B.Sc.) at the University of Rostock
+    Computer science student (B.Sc.) at the University of Rostock<br>
+    Focus: IT security and backend development
   </p>
 
   <div class="hero-buttons">
     <a href="#projects" class="btn">View Projects</a>
     <a href="#contact" class="btn secondary">Contact</a>
-    <a href="docs/CV_Mathis_Behrendt.pdf" target="_blank" class="btn secondary">Download CV</a>
+    <a href="docs/CV_Mathis_Behrendt.pdf" target="_blank" rel="noopener" class="btn secondary">CV (English)</a>
+    <a href="docs/Lebenslauf_Mathis_Behrendt.pdf" target="_blank" rel="noopener" class="btn secondary">Lebenslauf (Deutsch)</a>
   </div>
 </section>
 
@@ -54,27 +57,30 @@
     <div class="card">
       <h3>Studies</h3>
       <p>
-        Computer Science student (B.Sc.) at the University of Rostock since October 2024.
-        After completing the first 4 semesters, my current grade average is 1.8.
+        B.Sc. Computer Science at the University of Rostock since October 2024,
+        currently in my 5th semester. Average grade so far: <strong>1.7</strong>
+        (ECTS grade B; German scale, 1.0 = best).
       </p>
-      <a href="docs/TranscriptOfRecords.pdf" target="_blank" class="btn secondary">Download Transcript of Records</a>
-    </div>
-
-    <div class="card">
-      <h3>Interests</h3>
-      <p>
-        I am especially interested in IT security and enjoy exploring
-        technical systems in depth, both at the hardware and software level.
+      <p class="muted">
+        Best results in Databases, Digital Systems and Functional Programming (1.0 each)
+        and in the Software Engineering team project (1.0).
       </p>
     </div>
 
     <div class="card">
-      <h3>Work Style</h3>
+      <h3>Teaching</h3>
       <p>
-        I work in a structured and solution-oriented way, learn new
-        technologies quickly, and enjoy expanding my knowledge continuously.
-        I like to spend a lot of time on topics that genuinely interest me,
-        such as IT security.
+        Teaching assistant for <em>Algorithms and Data Structures</em> (summer 2026) and
+        <em>Imperative Programming</em> (since October 2026): grading homework and giving
+        written feedback to first- and second-semester students.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>Looking for</h3>
+      <p>
+        A 20-week full-time internship in computer science from April 2027, ideally in
+        IT security or backend development. Flexible start date, open to relocation or remote work.
       </p>
     </div>
   </div>
@@ -83,213 +89,35 @@
 <section id="skills" class="section reveal">
   <h2>Skills</h2>
 
-  <!-- Tab Switch -->
-  <div class="skills-switch">
-    <button class="tab-btn active" data-tab="personal">Personal Skills</button>
-    <button class="tab-btn" data-tab="study">Academic Skills</button>
-  </div>
-
-  <!-- Tab Contents -->
-  <div class="tab-content active" id="personal">
-    <div class="skills">
-      <div class="skill">
-        <span>Java</span>
-        <div class="bar"><div data-percent-value="80%"></div></div>
-      </div>
-      <div class="skill">
-        <span>Python</span>
-        <div class="bar"><div data-percent-value="75%"></div></div>
-      </div>
-      <div class="skill">
-        <span>C</span>
-        <div class="bar"><div data-percent-value="85%"></div></div>
-      </div>
-      <div class="skill">
-        <span>HTML / CSS</span>
-        <div class="bar"><div data-percent-value="70%"></div></div>
-      </div>
-      <div class="skill">
-        <span>JavaScript</span>
-        <div class="bar"><div data-percent-value="55%"></div></div>
-      </div>
-      <div class="skill">
-        <span>Prolog</span>
-        <div class="bar"><div data-percent-value="60%"></div></div>
-      </div>
-      <div class="skill">
-        <span>Haskell</span>
-        <div class="bar"><div data-percent-value="65%"></div></div>
-      </div>
-      <div class="skill">
-        <span>SQL</span>
-        <div class="bar"><div data-percent-value="75%"></div></div>
-      </div>
-      <div class="skill">
-        <span>Git</span>
-        <div class="bar"><div data-percent-value="80%"></div></div>
-      </div>
-      <div class="skill">
-        <span>Linux</span>
-        <div class="bar"><div data-percent-value="65%"></div></div>
-      </div>
+  <div class="skill-groups">
+    <div class="skill-group">
+      <h3>Programming</h3>
+      <ul class="tags">
+        <li>Java</li><li>Python</li><li>C</li><li>SQL</li><li>JavaScript</li>
+        <li class="basic">TypeScript</li><li class="basic">Haskell</li><li class="basic">Prolog</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Web &amp; frameworks</h3>
+      <ul class="tags">
+        <li>HTML/CSS</li><li>Javalin</li><li>FastAPI</li><li class="basic">React / Next.js</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Tools</h3>
+      <ul class="tags">
+        <li>Git</li><li>GitLab</li><li>Maven</li><li>SQLite</li>
+        <li>PostgreSQL</li><li>Linux</li><li>LaTeX</li><li class="basic">Docker</li>
+      </ul>
+    </div>
+    <div class="skill-group">
+      <h3>Methods</h3>
+      <ul class="tags">
+        <li>Scrum</li><li>UML</li><li>Requirements engineering</li><li>Software testing</li>
+      </ul>
     </div>
   </div>
-
-  <div class="tab-content" id="study">
-    <div class="skills">
-      <div class="skill">
-        <div class="skill-header">
-          <span>Overall Grade</span>
-          <span class="grade-pill">1.8</span>
-        </div>
-        <div class="bar"><div data-percent-value="82%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Algorithms and Data Structures</span>
-          <span class="grade-pill">1.3</span>
-        </div>
-        <div class="bar"><div data-percent-value="93%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Operating Systems and Distributed Systems</span>
-          <span class="grade-pill">2.3</span>
-        </div>
-        <div class="bar"><div data-percent-value="70%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Databases 1</span>
-          <span class="grade-pill">1.0</span>
-        </div>
-        <div class="bar"><div data-percent-value="100%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Digital Systems</span>
-          <span class="grade-pill">1.0</span>
-        </div>
-        <div class="bar"><div data-percent-value="100%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Introduction to Theoretical Computer Science</span>
-          <span class="grade-pill">3.0</span>
-        </div>
-        <div class="bar"><div data-percent-value="50%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Formal Methods in Computer Science</span>
-          <span class="grade-pill">1.3</span>
-        </div>
-        <div class="bar"><div data-percent-value="93%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Functional Programming</span>
-          <span class="grade-pill">1.0</span>
-        </div>
-        <div class="bar"><div data-percent-value="100%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Imperative Programming for Computer Science</span>
-          <span class="grade-pill">1.3</span>
-        </div>
-        <div class="bar"><div data-percent-value="93%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Computers and Science</span>
-          <span class="grade-pill">Passed</span>
-        </div>
-        <div class="bar"><div data-percent-value="100%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Artificial Intelligence</span>
-          <span class="grade-pill">2.0</span>
-        </div>
-        <div class="bar"><div data-percent-value="75%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Logic</span>
-          <span class="grade-pill">2.3</span>
-        </div>
-        <div class="bar"><div data-percent-value="70%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Mathematics for Electrical Engineers and Computer Scientists 1</span>
-          <span class="grade-pill">2.7</span>
-        </div>
-        <div class="bar"><div data-percent-value="60%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Mathematics for Electrical Engineers and Computer Scientists 2</span>
-          <span class="grade-pill">1.7</span>
-        </div>
-        <div class="bar"><div data-percent-value="83%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Mathematics for Computer Scientists 3</span>
-          <span class="grade-pill">1.7</span>
-        </div>
-        <div class="bar"><div data-percent-value="83%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Modeling and Simulation</span>
-          <span class="grade-pill">1.7</span>
-        </div>
-        <div class="bar"><div data-percent-value="83%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Computer Networks and Data Security</span>
-          <span class="grade-pill">2.2</span>
-        </div>
-        <div class="bar"><div data-percent-value="74%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Software Engineering for Computer Science</span>
-          <span class="grade-pill">1.3</span>
-        </div>
-        <div class="bar"><div data-percent-value="93%"></div></div>
-      </div>
-
-      <div class="skill">
-        <div class="skill-header">
-          <span>Professional English for Computer Science and Mathematics (C1.1 CEFR)</span>
-          <span class="grade-pill">1.3</span>
-        </div>
-        <div class="bar"><div data-percent-value="93%"></div></div>
-      </div>
-    </div>
-  </div>
+  <p class="legend"><span class="tag-sample basic">outlined</span> = basic knowledge</p>
 </section>
 
 <section id="projects" class="section reveal">
@@ -297,38 +125,35 @@
 
   <div class="card-grid">
     <div class="card project">
-      <img src="images/portfolio.png" alt="Portfolio Project" class="project-img">
-      <h3>Portfolio Website</h3>
-      <p><em>HTML · CSS · JavaScript</em></p>
+      <img src="images/Scrumboard.png" alt="Screenshot of the Scrum board application" class="project-img">
+      <h3>Scrum Board</h3>
+      <p><em>Java · Javalin · Mustache · SQLite · JUnit · Maven</em></p>
       <p>
-        Development of a portfolio website to present my projects, skills, and experience. Includes dark mode, responsive layouts, and scroll animations.
+        Web application for agile project management with accounts, backlogs, user stories and tasks.
+        Built by a team of seven students over four Scrum sprints in the Software Engineering module
+        (project grade 1.0).
+      </p>
+      <p>
+        <strong>My part:</strong> requirements and user stories, design documentation (class and
+        sequence diagrams, traceability), features such as the user-story backlog view, task
+        priorities with sorting and input validation at registration, plus documented manual test cases.
       </p>
       <div class="project-buttons">
-        <a href="https://github.com/Madl211/portfolio" target="blank" class="btn small">Repository</a>
+        <a href="https://github.com/madl211/scrumboard" target="_blank" rel="noopener" class="btn small">Repository</a>
       </div>
     </div>
 
     <div class="card project">
-      <img src="images/Scrumboard.png" alt="Project 2" class="project-img">
-      <h3>Scrum board</h3>
-      <p><em>Java · SQLite · CSS · HTML + Mustache templates</em></p>
+      <img src="images/portfolio.png" alt="Screenshot of this portfolio website" class="project-img">
+      <h3>Portfolio Website</h3>
+      <p><em>HTML · CSS · JavaScript</em></p>
       <p>
-        This project is a Scrum board application for managing user accounts, backlogs, tasks, and team assignments in an agile workflow. It is built with Java, SQLite, and web templates to help users organize and track project work efficiently. It was created as part of a module at the university with 5 fellow students.
+        This website: plain HTML, CSS and JavaScript without frameworks, with dark/light mode,
+        responsive layout and scroll animations, hosted on GitHub Pages.
       </p>
-      <p>
-        
-      </p>
-      <a href="https://github.com/madl211/scrumboard" target="blank" class="btn small">Repository</a>
-    </div>
-
-    <div class="card project">
-      <img src="images/siem.png" alt="Project 3" class="project-img">
-      <h3>Mini-SIEM</h3>
-      <p><em>Python · FastAPI · SQLite · HTML · JavaScript</em></p>
-      <p>
-        A security log analyzer that ingests SSH and HTTP logs, detects suspicious activity such as brute-force attacks and port scans, and presents prioritized alerts in a web interface. Includes configurable detection rules, event search, timelines, and JSON/CSV export.
-      </p>
-      <a href="https://github.com/madl211/mini-siem" target="blank" class="btn small">Repository</a>
+      <div class="project-buttons">
+        <a href="https://github.com/madl211/portfolio" target="_blank" rel="noopener" class="btn small">Repository</a>
+      </div>
     </div>
   </div>
 </section>
@@ -337,33 +162,39 @@
   <h2>Contact</h2>
 
   <div class="contact-grid">
-    <a href="mailto:mathis@unitofashion.de" class="contact-item email-link" aria-label="Email">
+    <a href="mailto:mathis@unitofashion.de" class="contact-item">
       <span class="contact-icon">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/gmail.svg" alt="Email" width="18" height="18" style="width:18px;height:18px;display:block;" />
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg>
       </span>
+      <span>mathis@unitofashion.de</span>
     </a>
 
-    <a href="https://github.com/madl211" target="_blank" class="contact-item icon-only" aria-label="GitHub">
+    <a href="https://github.com/madl211" target="_blank" rel="noopener" class="contact-item">
       <span class="contact-icon">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="GitHub" width="18" height="18" style="width:18px;height:18px;display:block;" />
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/github.svg" alt="" width="18" height="18">
       </span>
+      <span>GitHub</span>
     </a>
 
-    <a href="https://www.linkedin.com/in/mathis-behrendt-5ab5ba37a/" target="_blank" class="contact-item icon-only" aria-label="LinkedIn">
+    <a href="https://www.linkedin.com/in/mathis-behrendt-5ab5ba37a/" target="_blank" rel="noopener" class="contact-item">
       <span class="contact-icon">
-        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="LinkedIn" width="18" height="18" style="width:18px;height:18px;display:block;" />
+        <img src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/linkedin.svg" alt="" width="18" height="18">
       </span>
+      <span>LinkedIn</span>
     </a>
   </div>
 </section>
 
+<footer class="footer">
+  <p>© 2026 Mathis Behrendt</p>
+</footer>
+
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox">
-  <span class="close">&times;</span>
-  <img class="lightbox-img" src="" alt="Lightbox Image">
+  <span class="close" aria-label="Close">&times;</span>
+  <img class="lightbox-img" alt="Enlarged project screenshot">
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-

@@ -3,19 +3,14 @@ window.addEventListener("load", () => {
   window.scrollTo(0, 0);
 });
 
-// Scroll reveal: replay animation on every scroll
+// Scroll reveal: show each section once it comes into view
 const reveals = document.querySelectorAll(".reveal");
 
 function revealOnScroll() {
   reveals.forEach(el => {
     const top = el.getBoundingClientRect().top;
-    const bottom = el.getBoundingClientRect().bottom;
-    const windowHeight = window.innerHeight;
-
-    if (top < windowHeight - 100 && bottom > 100) {
+    if (top < window.innerHeight - 100) {
       el.classList.add("active");
-    } else {
-      el.classList.remove("active");
     }
   });
 }
@@ -38,82 +33,30 @@ toggle.addEventListener("click", () => {
   localStorage.setItem("theme", light ? "light" : "dark");
 });
 
-// Tabs
-const tabButtons = document.querySelectorAll(".tab-btn");
-const tabContents = document.querySelectorAll(".tab-content");
-
-tabButtons.forEach(btn => {
-  btn.addEventListener("click", () => {
-    const tab = btn.getAttribute("data-tab");
-
-    tabButtons.forEach(b => b.classList.remove("active"));
-    btn.classList.add("active");
-
-    tabContents.forEach(content => {
-      if (content.id === tab) {
-        content.classList.add("active");
-      } else {
-        content.classList.remove("active");
-      }
-    });
-
-    resetSkills();
-    animateSkills();
-  });
-});
-
-// Skills animation
-function animateSkills() {
-  const visibleSkills = document.querySelectorAll(".tab-content.active .skill");
-
-  visibleSkills.forEach((skill, index) => {
-    const bar = skill.querySelector(".bar div");
-    const top = skill.getBoundingClientRect().top;
-    const windowHeight = window.innerHeight;
-
-    if (top < windowHeight - 50) {
-      const percent = bar.getAttribute("data-percent-value");
-      setTimeout(() => {
-        bar.style.width = percent;
-      }, index * 200);
-    }
-  });
-}
-
-// Reset skills
-function resetSkills() {
-  const allBars = document.querySelectorAll(".tab-content .skill .bar div");
-  allBars.forEach(bar => {
-    bar.style.width = "0";
-  });
-}
-
-// Scroll event
-window.addEventListener("scroll", animateSkills);
-animateSkills();
-
-
 // Lightbox for project images
 const lightbox = document.getElementById("lightbox");
 const lightboxImg = lightbox.querySelector(".lightbox-img");
 const closeBtn = lightbox.querySelector(".close");
 
+function closeLightbox() {
+  lightbox.style.display = "none";
+  lightboxImg.removeAttribute("src");
+}
+
 document.querySelectorAll(".project-img").forEach(img => {
   img.addEventListener("click", () => {
-    lightbox.style.display = "flex";
     lightboxImg.src = img.src;
+    lightbox.style.display = "flex";
   });
 });
 
-closeBtn.addEventListener("click", () => {
-  lightbox.style.display = "none";
-  lightboxImg.src = "";
+closeBtn.addEventListener("click", closeLightbox);
+
+// Click outside the image or press Escape to close the lightbox
+lightbox.addEventListener("click", (e) => {
+  if (e.target === lightbox) closeLightbox();
 });
 
-// Click outside the image closes the lightbox
-lightbox.addEventListener("click", (e) => {
-  if (e.target === lightbox) {
-    lightbox.style.display = "none";
-    lightboxImg.src = "";
-  }
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeLightbox();
 });
